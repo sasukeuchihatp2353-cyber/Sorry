@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'm Sorry, Manasvi ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffeef8 0%, #f8e1f4 50%, #e8f4fc 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating Hearts Background */
+    .hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Floating Message */
+    .floating-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 25px;
+      border-radius: 30px;
+      box-shadow: 0 5px 20px rgba(255, 182, 193, 0.4);
+      animation: gentleFloat 3s ease-in-out infinite;
+      z-index: 10;
+      font-size: 14px;
+      color: #d4739d;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Main Content */
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Bouncing Heart */
+    .bouncing-heart {
+      font-size: 60px;
+      animation: bounce 1s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Hero Title */
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: #e75480;
+      text-shadow: 0 0 30px rgba(231, 84, 128, 0.4), 0 0 60px rgba(231, 84, 128, 0.2);
+      margin-bottom: 30px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 30px rgba(231, 84, 128, 0.4); }
+      to { text-shadow: 0 0 50px rgba(231, 84, 128, 0.6), 0 0 80px rgba(231, 84, 128, 0.3); }
+    }
+
+    /* Paragraph */
+    .message {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: #7a5a6d;
+      max-width: 600px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+
+    /* Forgive Button */
+    .forgive-btn {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      padding: 18px 50px;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255, 154, 158, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .forgive-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 40px rgba(255, 154, 158, 0.6);
+    }
+
+    .forgive-btn:active {
+      transform: scale(0.98);
+    }
+
+    .forgive-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      100% { left: 100%; }
+    }
+
+    /* Thank You Message (Hidden Initially) */
+    .thank-you {
+      display: none;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      color: #e75480;
+      margin-top: 30px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Popping Hearts Animation */
+    .pop-heart {
+      position: fixed;
+      font-size: 30px;
+      pointer-events: none;
+      animation: popUp 1s ease-out forwards;
+      z-index: 100;
+    }
+
+    @keyframes popUp {
+      0% {
+        opacity: 1;
+        transform: scale(0) translateY(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5) translateY(-50px);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1) translateY(-100px);
+      }
+    }
+
+    /* Chibi Couple */
+    .chibi-couple {
+      font-size: 50px;
+      margin-top: 40px;
+      animation: sway 2s ease-in-out infinite;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .floating-message {
+        top: auto;
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 12px;
+      }
+      
+      @keyframes gentleFloat {
+        0%, 100% { transform: translateX(50%) translateY(0); }
+        50% { transform: translateX(50%) translateY(-10px); }
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Hearts Background -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- Floating Message -->
+  <div class="floating-message">You mean the world to me 💖</div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="bouncing-heart">💕</div>
+    <h1>I'm really sorry, Manasvi ❤️</h1>
+    <p class="message">
+      I know I made a mistake, but I truly care about you more than words can ever express. 
+      You are the most beautiful thing that has ever happened to me, and losing you would break my heart. 
+      Please forgive me… 🥺
+    </p>
+    <button class="forgive-btn" id="forgiveBtn">Forgive me? 💗</button>
+    <div class="thank-you" id="thankYou">
+      Thank you for giving me another chance, Manasvi. 💖<br>I love you more than anything.
+    </div>
+    <div class="chibi-couple">👩‍❤️‍👨</div>
+  </div>
+
+  <script>
+    // Create floating hearts in background
+    function createFloatingHearts() {
+      const container = document.getElementById('heartsContainer');
+      const hearts = ['💕', '💗', '💖', '💓', '❤️', '💘', '💝'];
+      
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        container.appendChild(heart);
+
+        // Remove heart after animation
+        setTimeout(() => heart.remove(), 11000);
+      }, 500);
+    }
+
+    // Create popping hearts on click
+    function createPopHearts(x, y) {
+      const hearts = ['💕', '💗', '💖', '💓', '❤️'];
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'pop-heart';
+          heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.style.left = (x + (Math.random() - 0.5) * 200) + 'px';
+          heart.style.top = (y + (Math.random() - 0.5) * 100) + 'px';
+          document.body.appendChild(heart);
+          
+          setTimeout(() => heart.remove(), 1000);
+        }, i * 50);
+      }
+    }
+
+    // Forgive button click handler
+    document.getElementById('forgiveBtn').addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      
+      createPopHearts(x, y);
+      
+      // Show thank you message
+      const thankYou = document.getElementById('thankYou');
+      thankYou.style.display = 'block';
+      
+      // Change button text
+      this.textContent = 'I love you! 💕';
+      this.style.background = 'linear-gradient(135deg, #a8e063 0%, #56ab2f 100%)';
+    });
+
+    // Initialize floating hearts
+    createFloatingHearts();
+  </script>
+</body>
+</html>
